@@ -1,44 +1,39 @@
 import { useState } from "react";
 
-
 const Todo = () => {
+  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState([]);
 
-    const [task, setTask] = useState("");
-    const [tasks, setTasks] = useState([]);
+  const addTask = () => {
+    if (task.trim() !== "") {
+      setTasks([...tasks, { task: task, completed: false }]);
+      setTask("");
+    }
+  };
 
-    const addTask = () => {
-        if (task.trim() !== "") {
-            setTasks([...tasks, { task: task, complete: false }])
-            console.log(task)
-            console.log(tasks)
-            setTask("")
-        }
-    };
+  const toggleTask = (index) => {
+    const updatedTasks = tasks.map((t, i) =>
+      i === index ? { ...t, completed: !t.completed } : t
+    );
+    setTasks(updatedTasks);
+  };
 
-    const toggleTask = (index) => {
-        const updatedTask = tasks.map(
-            (t, i) => (i === index ? { ...t, completed: !t.completed } : t) // not operator (answer reverse)
-        );
-        setTasks(updatedTask);
-    };
+  const deleteTask = (index) => {
+    setTasks(tasks.filter((_, i) => i !== index));
+  };
 
-
-    const deleteTask = (index) => {
-        setTasks(tasks.filter((_, i) => i !== index));
-    };
-
-
-        
   return (
-    <div style={{
-      width: "400px",
-      margin: "50px auto",
-      padding: "20px",
-      background: "rgb(217 219 243)",
-      borderRadius: "10px",
-      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
-      textAlign: "center",
-    }}>
+    <div
+      style={{
+        width: "400px",
+        margin: "50px auto",
+        padding: "20px",
+        background: "rgb(217 219 243)",
+        borderRadius: "10px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
+        textAlign: "center",
+      }}
+    >
       <h2 style={{ color: "#333" }}>Todo List</h2>
       <div style={{ display: "flex", gap: "10px", marginBottom: "15px" }}>
         <input
@@ -51,6 +46,9 @@ const Todo = () => {
             padding: "15px",
             borderRadius: "5px",
             border: "1px solid #ccc",
+            color: "#333", // Ensures text is visible
+            background: "#fff", // Ensures a contrasting background
+            fontSize: "16px", // Improves text readability
           }}
         />
         <button
@@ -91,8 +89,7 @@ const Todo = () => {
                 cursor: "pointer",
               }}
             />
-
-            <span>
+            <span style={{ textDecoration: t.completed ? "line-through" : "none",  color: "black"}}>
               {t.task}
             </span>
             <button
@@ -113,8 +110,6 @@ const Todo = () => {
       </ul>
     </div>
   );
-    
-
-}
+};
 
 export default Todo;
