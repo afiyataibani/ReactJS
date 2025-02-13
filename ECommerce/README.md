@@ -1,7 +1,7 @@
 <h1>E-Commerce App</h1>
     <p>This is a simple e-commerce app built with React that allows users to browse products, add them to a cart, and manage their shopping cart.</p>
     
-    <h2>Features</h2>
+<h2>Features</h2>
     <ul>
         <li>Displays a list of products.</li>
         <li>Users can add products to the cart.</li>
@@ -11,7 +11,7 @@
         <li>Responsive and styled with CSS.</li>
     </ul>
     
-    <h2>Installation</h2>
+<h2>Installation</h2>
     <p>To set up and run this project locally, follow these steps:</p>
     <ol>
         <li>Clone the repository:</li>
@@ -24,7 +24,7 @@
         <pre><code>npm start</code></pre>
     </ol>
     
-    <h2>Project Structure</h2>
+<h2>Project Structure</h2>
     <pre>
     /src
     ├── components
@@ -37,12 +37,12 @@
     ├── App.css
     </pre>
     
-    <h2>Technologies Used</h2>
+<h2>Technologies Used</h2>
     <ul>
         <li>React</li>
         <li>JavaScript (ES6+)</li>
         <li>HTML & CSS</li>
     </ul>
     
-    <h2>Author</h2>
+ <h2>Author</h2>
     <p>© 2025 Afiya Taibani. All rights reserved.</p>
