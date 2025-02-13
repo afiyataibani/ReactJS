@@ -4,14 +4,14 @@ function NavBar({ cartItemCount = 0 }) {
   return (
     <div
       style={{
-        backgroundColor: "#222", // Darker background for better contrast
+        backgroundColor: "#222", 
         padding: "1rem 0",
         color: "white",
-        position: "fixed", // Stays at the top
+        position: "fixed", 
         top: 0,
         left: 0,
         width: "100%",
-        boxShadow: "0px 4px 8px rgba(0,0,0,0.3)", // Subtle shadow
+        boxShadow: "0px 4px 8px rgba(0,0,0,0.3)", 
       }}
     >
       <div

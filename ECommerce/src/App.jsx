@@ -87,7 +87,6 @@ function App() {
 
   return (
     <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
-      {/* 🛒 Navbar at the top */}
       <NavBar cartItemCount={cartItemCount} />
 
       {/* Product Section */}
@@ -95,8 +94,8 @@ function App() {
   display: "flex", 
   flexWrap: "wrap", 
   gap: "20px", 
-  justifyContent: "center", // Keeps products centered
-  marginTop: "20px" // Adds space below navbar 
+  justifyContent: "center", 
+  marginTop: "20px"  
 }}>
   {products.map((product) => (
     <Products key={product.id} product={product} onAddToCart={onAddToCart} />

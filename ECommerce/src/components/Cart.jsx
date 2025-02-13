@@ -10,8 +10,6 @@ function Cart({ items, onRemoveFromCart, onRemovingCard }) {
 
         marginTop:"135px",
         width: "350px",
-        // maxWidth: "400px", // Increased width
-        // minHeight: "300px",
         backgroundColor: "#252525",
         padding: "15px",
         borderRadius: "8px",
