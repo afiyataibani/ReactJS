@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const LoginForm = ({ onSubmit, credential }) => {
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
   });
