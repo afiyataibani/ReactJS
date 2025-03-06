@@ -2,8 +2,8 @@ import React, { Fragment, useState } from "react";
 
 const UserProfile = ({ theme }) => {
   const [profile, setProfile] = useState({
-    name: "User1",
-    email: "user@gmail.com",
+    name: "Afiya Taibani",
+    email: "afiyataibani@gmail.com",
     bio: "React developer.",
     notification: true,
   });
@@ -66,19 +66,19 @@ const UserProfile = ({ theme }) => {
 
   const editButtonStyle = {
     ...buttonStyle,
-    backgroundColor: theme === "light" ? "#61A5C2" : "#3E7CB1", // Serene Sky Blue
+    backgroundColor: theme === "light" ? "#61A5C2" : "#3E7CB1", 
     color: "#fff",
   };
 
   const saveButtonStyle = {
     ...buttonStyle,
-    backgroundColor: theme === "light" ? "#6BCB77" : "#379B69", // Pastel Green
+    backgroundColor: theme === "light" ? "#6BCB77" : "#379B69", 
     color: "#fff",
   };
 
   const cancelButtonStyle = {
     ...buttonStyle,
-    backgroundColor: theme === "light" ? "#FF9F45" : "#E87424", // Soft Tangerine
+    backgroundColor: theme === "light" ? "#FF9F45" : "#E87424", 
     color: "#fff",
   };
 
