@@ -23,12 +23,14 @@ const Counter = ({ theme }) => {
 
   const containerStyle = {
     textAlign: "center",
-    padding: "25px",
+    padding: "30px",
     borderRadius: "12px",
-    backgroundColor: theme === "light" ? "#FAF3DD" : "#2C2C2C",
-    color: theme === "light" ? "#333" : "#EAEAEA",
-    boxShadow: "0px 5px 15px rgba(0,0,0,0.15)",
-    width: "340px",
+    backgroundColor: theme === "light" ? "#F8F9FA" : "#1E1E1E",
+    color: theme === "light" ? "#2D3748" : "#EAEAEA",
+    boxShadow: theme === "light"
+      ? "0 4px 8px rgba(0, 0, 0, 0.4)"
+      : "0px 8px 16px rgba(0, 0, 0, 0.4)",
+    width: "400px",
     margin: "auto",
     marginTop: "50px",
     fontFamily: "'Poppins', sans-serif",
@@ -38,64 +40,68 @@ const Counter = ({ theme }) => {
     fontSize: "42px",
     fontWeight: "600",
     margin: "15px 0",
+    color: theme === "light" ? "#1E40AF" : "#60A5FA",
   };
 
   const inputStyle = {
-    padding: "12px",
-    border: `2px solid ${theme === "light" ? "#B3B3B3" : "#666"}`,
-    borderRadius: "8px",
-    fontSize: "18px",
+    padding: "14px",
+    border: `2px solid ${theme === "light" ? "#BFDBFE" : "#475569"}`,
+    borderRadius: "10px",
+    fontSize: "16px",
     width: "85px",
     textAlign: "center",
-    margin: "10px",
-    backgroundColor: theme === "light" ? "#FFFFFF" : "#3A3A3A",
-    color: theme === "light" ? "#333" : "#EAEAEA",
+    margin: "12px auto",
+    backgroundColor: theme === "light" ? "rgb(55, 84, 112)" : "#334155",
+    color: theme === "light" ? "white" : "#DBEAFE",
     outline: "none",
-    transition: "border 0.3s ease",
+    transition: "border-color 0.3s ease, box-shadow 0.3s ease",
   };
 
   const buttonStyle = {
-    padding: "12px 20px",
+    padding: "12px 24px",
     border: "none",
-    borderRadius: "8px",
+    borderRadius: "10px",
     cursor: "pointer",
-    fontSize: "17px",
-    margin: "8px",
+    fontSize: "16px",
+    margin: "10px 8px",
     transition: "all 0.3s ease",
-    fontWeight: "bold",
-    boxShadow: "0px 4px 8px rgba(0,0,0,0.15)",
+    fontWeight: "600",
+    boxShadow: theme === "light" ? "0 4px 12px rgba(0,0,0,0.1)" : "0 4px 12px rgba(0,0,0,0.2)",
+    letterSpacing: "0.5px",
   };
 
   const incrementButtonStyle = {
     ...buttonStyle,
-    backgroundColor: theme === "light" ? "#6BCB77" : "#379B69", 
+    backgroundColor: theme === "light" ? "#34D399" : "#10B981",
     color: "#fff",
   };
 
   const resetButtonStyle = {
     ...buttonStyle,
-    backgroundColor: theme === "light" ? "#FF9F45" : "#E87424",
+    backgroundColor: theme === "light" ? "#FBBF24" : "#D97706",
     color: "#fff",
   };
 
   const autoIncrementButtonStyle = {
     ...buttonStyle,
-    backgroundColor: theme === "light" ? "#61A5C2" : "#3E7CB1", 
+    backgroundColor: theme === "light" ? "#60A5FA" : "#3B82F6",
     color: "#fff",
   };
 
   return (
     <Fragment>
       <div style={containerStyle}>
-        <h1 style={{fontWeight: "600", color: theme === "light" ? "#333" : "#FFD700"}}>Counter</h1>
-        <h3 style={{color: theme === "light" ? "#555" : "#bbb" }}>
+        <h1 style={{ fontWeight: "700", color: theme === "light" ? "#1E40AF" : "#60A5FA", fontSize: "28px" }}>
+          Counter
+        </h1>
+        <h3 style={{ color: theme === "light" ? "#64748B" : "#94A3B8", fontSize: "18px", fontWeight: "400" }}>
           Using useState and useEffect hooks
         </h3>
 
         <div style={counterStyle}>{count}</div>
 
         <div>
-          <label htmlFor="increment" style={{ fontSize: "16px", fontWeight: "500" }}>
+          <label htmlFor="increment" style={{ fontSize: "18px", fontWeight: "500", marginRight: "20px" }}>
             Increment Amount
           </label>
           <input
