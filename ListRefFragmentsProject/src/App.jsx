@@ -7,6 +7,7 @@ import UserProfile from "./components/UserProfile";
 import FruitList from "./components/FruitList";
 import ToDoList from "./components/ToDoList";
 
+
 const styles = {
   light: {
     bg: "#E6F0FA",
