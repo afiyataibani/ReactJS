@@ -1,24 +1,43 @@
 import React, { Fragment, useEffect, useState } from "react";
 
 const Counter = ({ theme }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(() => {
+    const savedCount = localStorage.getItem("count");
+    return savedCount ? JSON.parse(savedCount) : 0;
+  });
+
   const [autoIncrement, setAutoIncrement] = useState(false);
-  const [incrementValue, setIncrementValue] = useState(1);
+  const [incrementValue, setIncrementValue] = useState(() => {
+    const savedIncrement = localStorage.getItem("incrementValue");
+    return savedIncrement ? JSON.parse(savedIncrement) : 1;
+  });
 
   useEffect(() => {
     let interval;
     if (autoIncrement) {
-      interval = setInterval(
-        () => setCount((prevCount) => prevCount + incrementValue),
-        1000
-      );
+      interval = setInterval(() => {
+        setCount((prevCount) => {
+          const newCount = prevCount + incrementValue;
+          localStorage.setItem("count", JSON.stringify(newCount));
+          return newCount;
+        });
+      }, 1000);
     }
     return () => interval && clearInterval(interval);
   }, [autoIncrement, incrementValue]);
 
+  useEffect(() => {
+    localStorage.setItem("count", JSON.stringify(count));
+  }, [count]);
+
+  useEffect(() => {
+    localStorage.setItem("incrementValue", JSON.stringify(incrementValue));
+  }, [incrementValue]);
+
   const handleReset = () => {
     setCount(0);
     setAutoIncrement(false);
+    localStorage.setItem("count", JSON.stringify(0));
   };
 
   const containerStyle = {
@@ -116,14 +135,20 @@ const Counter = ({ theme }) => {
 
         <div>
           <button
-            onClick={() => setCount(count - incrementValue)}
+            onClick={() => {
+              setCount(count - incrementValue);
+              localStorage.setItem("count", JSON.stringify(count - incrementValue));
+            }}
             style={incrementButtonStyle}
           >
             -
           </button>
 
           <button
-            onClick={() => setCount(count + incrementValue)}
+            onClick={() => {
+              setCount(count + incrementValue);
+              localStorage.setItem("count", JSON.stringify(count + incrementValue));
+            }}
             style={incrementButtonStyle}
           >
             +

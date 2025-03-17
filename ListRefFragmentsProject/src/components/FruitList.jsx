@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
 
 const FruitList = ({ theme }) => {
-  const [fruits, setFruits] = useState([
-    { id: 1, name: "Apple", color: "red", quantity: 10 },
-    { id: 2, name: "Grapes", color: "green", quantity: 15 },
-    { id: 3, name: "BlueBerry", color: "blue", quantity: 5 },
-  ]);
+  const [fruits, setFruits] = useState(() => {
+    const savedFruits = localStorage.getItem("fruits");
+    return savedFruits ? JSON.parse(savedFruits) : [
+      { id: 1, name: "Apple", color: "red", quantity: 10 },
+      { id: 2, name: "Grapes", color: "green", quantity: 15 },
+      { id: 3, name: "BlueBerry", color: "blue", quantity: 5 },
+    ];
+  });
   const [newFruit, setNewFruit] = useState({ name: "", color: "", quantity: 1 });
   const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
     document.body.style.backgroundColor = theme === "light" ? "#F8F9FA" : "#1E1E1E";
   }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem("fruits", JSON.stringify(fruits));
+  }, [fruits]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -103,7 +110,6 @@ const FruitList = ({ theme }) => {
   );
 };
 
-// Dynamic Input Styles based on Theme
 const inputStyle = (theme) => ({
   padding: "14px",
   borderRadius: "10px",

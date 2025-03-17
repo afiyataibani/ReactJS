@@ -1,21 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ToDoList = ({ theme }) => {
   const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = () => {
     if (task.trim() !== "") {
-      setTasks([...tasks, { task: task, completed: false }]);
+      setTasks([...tasks, { task, completed: false }]);
       setTask("");
     }
   };
 
   const toggleTask = (index) => {
-    const updatedTasks = tasks.map((t, i) =>
-      i === index ? { ...t, completed: !t.completed } : t
-    );
-    setTasks(updatedTasks);
+    setTasks(tasks.map((t, i) => (i === index ? { ...t, completed: !t.completed } : t)));
   };
 
   const deleteTask = (index) => {
@@ -35,7 +39,9 @@ const ToDoList = ({ theme }) => {
         color: theme === "light" ? "#333" : "#EAEAEA",
       }}
     >
-      <h2 style={{ color: theme === "light" ? "#1E40AF" : "#60A5FA", fontSize: "32px"}}>Todo List</h2>
+      <h2 style={{ color: theme === "light" ? "#1E40AF" : "#60A5FA", fontSize: "32px" }}>
+        Todo List
+      </h2>
       <div style={{ display: "flex", gap: "10px", marginBottom: "15px" }}>
         <input
           type="text"
