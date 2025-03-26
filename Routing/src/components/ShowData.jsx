@@ -42,8 +42,17 @@ function ShowData() {
   };
 
   return (
-    <div style={{ padding: "20px", backgroundColor: "#F8F8FF", minHeight: "100vh" }}>
-      <h1 className="text-center mt-4 mb-5" style={{ color: "#004085", fontWeight: "bold" }}>
+    <div
+      style={{
+        padding: "20px",
+        backgroundColor: "#F8F8FF",
+        minHeight: "100vh",
+      }}
+    >
+      <h1
+        className="text-center mt-4 mb-5"
+        style={{ color: "#004085", fontWeight: "bold" }}
+      >
         Show Data
       </h1>
 
@@ -57,7 +66,11 @@ function ShowData() {
             onChange={(e) => setSearch(e.target.value)}
             style={{ height: "45px" }}
           />
-          <select className="form-select w-25" onChange={sortingByName} style={{ height: "45px" }}>
+          <select
+            className="form-select w-25"
+            onChange={sortingByName}
+            style={{ height: "45px" }}
+          >
             <option value="">--Select Sorting--</option>
             <option value="asc">Ascending</option>
             <option value="desc">Descending</option>
@@ -81,7 +94,10 @@ function ShowData() {
           </thead>
           <tbody>
             {stuData
-              .filter((v) => !search || v.name.includes(search) || v.email.includes(search))
+              .filter(
+                (v) =>
+                  !search || v.name.includes(search) || v.email.includes(search)
+              )
               .map((v, i) => (
                 <tr key={i}>
                   <td className="p-4">{v.name}</td>
@@ -91,16 +107,36 @@ function ShowData() {
                   <td className="p-4">{v.hobby.toString()}</td>
                   <td className="p-4">{v.city}</td>
                   <td className="p-4">
-                    {v.image && <img src={v.image} alt="Online" height="70" className="rounded shadow-sm" />}
+                    {v.image && (
+                      <img
+                        src={v.image}
+                        alt="Online"
+                        height="70"
+                        className="rounded shadow-sm"
+                      />
+                    )}
                   </td>
                   <td className="p-4">
-                    {v.newImage && <img src={v.newImage} alt="Upload" height="70" className="rounded shadow-sm" />}
+                    {v.newImage && (
+                      <img
+                        src={v.newImage}
+                        alt="Upload"
+                        height="70"
+                        className="rounded shadow-sm"
+                      />
+                    )}
                   </td>
                   <td className="p-4">
-                    <button className="btn btn-danger btn-sm me-2" onClick={() => deleteStudent(i)}>
+                    <button
+                      className="btn btn-danger btn-sm me-2"
+                      onClick={() => deleteStudent(i)}
+                    >
                       Delete
                     </button>
-                    <Link to={`/updateData/${i}`} className="btn btn-primary btn-sm">
+                    <Link
+                      to={`/updateData/${i}`}
+                      className="btn btn-primary btn-sm"
+                    >
                       Update
                     </Link>
                   </td>
@@ -114,9 +150,16 @@ function ShowData() {
           {pageNo.map((v, i) => (
             <button
               key={i}
-              className={`btn mx-1 ${currentPage === i + 1 ? "btn-primary" : "btn-outline-primary"}`}
+              className={`btn mx-1 ${
+                currentPage === i + 1 ? "btn-primary" : "btn-outline-primary"
+              }`}
               onClick={() => setCurrentPage(i + 1)}
-              style={{ width: "40px", height: "40px", fontSize: "16px", fontWeight: "bold" }}
+              style={{
+                width: "40px",
+                height: "40px",
+                fontSize: "16px",
+                fontWeight: "bold",
+              }}
             >
               {i + 1}
             </button>

@@ -7,7 +7,13 @@ function Home() {
   let [st, setSt] = useState({});
   let [stuData, setStudata] = useState([]);
   let [hobby, setHobby] = useState([]);
-  let [city] = useState(["Surat", "Bhavnagar", "Ahemdabad", "Baroda", "Mumbai"]);
+  let [city] = useState([
+    "Surat",
+    "Bhavnagar",
+    "Ahemdabad",
+    "Baroda",
+    "Mumbai",
+  ]);
   let [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -52,50 +58,90 @@ function Home() {
 
   return (
     // #b3cee5
-    <div style={{ 
-        backgroundColor: "#F8F8FF", 
-        minHeight: "100vh",  
-        width: "100%", 
-        display: "flex", 
-        alignItems: "center", 
-        justifyContent: "center" 
-      }}>
-      <form onSubmit={submitData} style={{ 
-          backgroundColor: "#f0f8ff", 
-          padding: "20px", 
-          borderRadius: "10px", 
-          width: "70%", 
-          maxWidth: "720px", 
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" 
-        }}>
-        <h2 className="text-center mb-4" style={{ color: "#004085", fontWeight: "bold" }}>
+    <div
+      style={{
+        backgroundColor: "#F8F8FF",
+        minHeight: "100vh",
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <form
+        onSubmit={submitData}
+        style={{
+          backgroundColor: "#f0f8ff",
+          padding: "20px",
+          borderRadius: "10px",
+          width: "70%",
+          maxWidth: "720px",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <h2
+          className="text-center mb-4"
+          style={{ color: "#004085", fontWeight: "bold" }}
+        >
           Student Registration
         </h2>
 
         <div className="mb-3">
           <label className="form-label">Enter Name</label>
-          <input type="text" name="name" className="form-control" onChange={getInput} value={st.name || ""} />
+          <input
+            type="text"
+            name="name"
+            className="form-control"
+            onChange={getInput}
+            value={st.name || ""}
+          />
         </div>
 
         <div className="mb-3">
           <label className="form-label">Enter Email</label>
-          <input type="email" name="email" className="form-control" onChange={getInput} value={st.email || ""} />
+          <input
+            type="email"
+            name="email"
+            className="form-control"
+            onChange={getInput}
+            value={st.email || ""}
+          />
         </div>
 
         <div className="mb-3">
           <label className="form-label">Enter Password</label>
-          <input type="password" name="password" className="form-control" onChange={getInput} value={st.password || ""} />
+          <input
+            type="password"
+            name="password"
+            className="form-control"
+            onChange={getInput}
+            value={st.password || ""}
+          />
         </div>
 
         <div className="mb-3">
           <label className="form-label">Select Gender</label>
           <div className="d-flex gap-3">
             <div className="form-check">
-              <input type="radio" name="gender" value="male" className="form-check-input" onChange={getInput} checked={st.gender === "male"} />
+              <input
+                type="radio"
+                name="gender"
+                value="male"
+                className="form-check-input"
+                onChange={getInput}
+                checked={st.gender === "male"}
+              />
               <label className="form-check-label">Male</label>
             </div>
             <div className="form-check">
-              <input type="radio" name="gender" value="female" className="form-check-input" onChange={getInput} checked={st.gender === "female"} />
+              <input
+                type="radio"
+                name="gender"
+                value="female"
+                className="form-check-input"
+                onChange={getInput}
+                checked={st.gender === "female"}
+              />
               <label className="form-check-label">Female</label>
             </div>
           </div>
@@ -106,7 +152,14 @@ function Home() {
           <div className="d-flex gap-3">
             {["Music", "Reading", "Coding"].map((h) => (
               <div key={h} className="form-check">
-                <input type="checkbox" name="hobby" value={h} className="form-check-input" onChange={getInput} checked={hobby.includes(h)} />
+                <input
+                  type="checkbox"
+                  name="hobby"
+                  value={h}
+                  className="form-check-input"
+                  onChange={getInput}
+                  checked={hobby.includes(h)}
+                />
                 <label className="form-check-label">{h}</label>
               </div>
             ))}
@@ -115,7 +168,12 @@ function Home() {
 
         <div className="mb-3">
           <label className="form-label">Select City</label>
-          <select name="city" className="form-select" onChange={getInput} value={st.city || ""}>
+          <select
+            name="city"
+            className="form-select"
+            onChange={getInput}
+            value={st.city || ""}
+          >
             <option value="">--Select City--</option>
             {city.map((v, i) => (
               <option key={i} value={v}>
@@ -127,17 +185,43 @@ function Home() {
 
         <div className="mb-3">
           <label className="form-label">Online Image URL</label>
-          <input type="text" name="image" className="form-control" onChange={getInput} value={st.image || ""} />
+          <input
+            type="text"
+            name="image"
+            className="form-control"
+            onChange={getInput}
+            value={st.image || ""}
+          />
         </div>
 
         <div className="mb-3">
           <label className="form-label">Upload Image</label>
-          <input type="file" name="newImage" className="form-control" onChange={getInput} />
-          {image && <img src={image} alt="Preview" className="mt-3 rounded border shadow-sm" height="100" />}
+          <input
+            type="file"
+            name="newImage"
+            className="form-control"
+            onChange={getInput}
+          />
+          {image && (
+            <img
+              src={image}
+              alt="Preview"
+              className="mt-3 rounded border shadow-sm"
+              height="100"
+            />
+          )}
         </div>
 
         <div className="text-center">
-          <button type="submit" className="btn w-100" style={{ backgroundColor: "#004085", color: "#ffffff", fontWeight: "bold" }}>
+          <button
+            type="submit"
+            className="btn w-100"
+            style={{
+              backgroundColor: "#004085",
+              color: "#ffffff",
+              fontWeight: "bold",
+            }}
+          >
             Submit
           </button>
         </div>

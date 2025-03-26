@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <h2 style={{ backgroundColor: "#F8F8FF", padding: "10px", textAlign: "center", marginBottom: "0" }}>
+    <h2
+      style={{
+        backgroundColor: "#F8F8FF",
+        padding: "10px",
+        textAlign: "center",
+        marginBottom: "0",
+      }}
+    >
       <Link
         to="/"
         style={{
