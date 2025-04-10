@@ -1,0 +1,54 @@
+/* Active page styling */
+.pagination .page-item.active .page-link {
+  background: linear-gradient(90deg, #1a1a2e, #16213e) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* General page links */
+.pagination .page-link {
+  color: #1e272e;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  padding: 8px 14px;
+  margin: 0 3px; /* brings numbers closer */
+  border: 1px solid #dcdcdc;
+  font-weight: 500;
+}
+
+/* On hover */
+.pagination .page-link:hover {
+  background: linear-gradient(90deg, #243b55, #141e30);
+  color: #fff;
+}
+
+/* Prev & Next buttons specific */
+.pagination .page-item:first-child .page-link,
+.pagination .page-item:last-child .page-link {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  color: #1e272e;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 10px;
+}
+
+/* Disable shadow if not active */
+.pagination .page-item:not(.active) .page-link {
+  box-shadow: none;
+}
+
+/* Remove focus outline for clean click */
+.pagination .page-link:focus {
+  box-shadow: none;
+}
+
+/* Force text color white on hover for prev/next */
+.pagination .page-item:first-child .page-link:hover,
+.pagination .page-item:last-child .page-link:hover {
+  color: #fff !important;
+  background: linear-gradient(90deg, #243b55, #141e30);
+  border: none;
+}
