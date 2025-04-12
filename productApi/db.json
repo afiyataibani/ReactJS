@@ -97,41 +97,5 @@
       "description": "STUNNING TITANIUM DESIGN — iPhone 16 Pro has a strong and light titanium design with a larger 15.93 cm (6.3″) Super Retina XDR display. It’s remarkably durable with the latest-generation Ceramic Shield material that’s 2x tougher than any smartphone glass.\nBUILT FOR APPLE INTELLIGENCE — Apple Intelligence is the personal intelligence system that helps you write, express yourself and get things done effortlessly. With groundbreaking privacy protections, it gives you peace of mind that no one else can access your data — not even Apple."
     }
   ],
-  "reviews": [
-    {
-      "id": "9f68",
-      "productId": 8933,
-      "reviewer": "vaibhav",
-      "text": "bad ",
-      "rating": 4
-    },
-    {
-      "id": "8620",
-      "productId": 8933,
-      "reviewer": "ketul bhai",
-      "text": "kiya bakwas product hai",
-      "rating": 3
-    },
-    {
-      "id": "0eaf",
-      "productId": null,
-      "reviewer": "Heer",
-      "text": "Can be better",
-      "rating": 3
-    },
-    {
-      "id": "01b5",
-      "productId": 4031,
-      "reviewer": "Disha",
-      "text": "Can be better",
-      "rating": 3
-    },
-    {
-      "id": "70b2",
-      "productId": null,
-      "reviewer": "Afiya",
-      "text": "heats a lot",
-      "rating": 3
-    }
-  ]
+  "reviews": []
 }
