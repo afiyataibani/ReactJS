@@ -4,55 +4,71 @@ import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 function SignIn() {
-  let [user, setUser] = useState({});
-  let navigate = useNavigate();
-  let getInput = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
+  const [user, setUser] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
+
+  const getInput = (e) => {
+    const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
 
-  let submitData = (e) => {
+  const submitData = (e) => {
     e.preventDefault();
-    console.log(user);
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then((res) => {
         navigate("/dashboard");
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log("Login error:", err.message);
       });
   };
 
   return (
-    <div>
-      <h1>Sign In Page</h1>
-      <form method="post" onSubmit={(e) => submitData(e)}>
-        <table border={1} align="center">
-          <tr>
-            <td>Enter Email</td>
-            <td>
-              <input type="email" name="email" onChange={(e) => getInput(e)} />
-            </td>
-          </tr>
-          <tr>
-            <td>Enter Password</td>
-            <td>
-              <input
-                type="text"
-                name="password"
-                onChange={(e) => getInput(e)}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2} align="center">
-              <input type="submit" name="submit" value="Sign In" />
-            </td>
-          </tr>
-        </table>
-      </form>
-      <Link to="/signup">Sign Up</Link>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card p-4 shadow rounded-4 border-0" style={{ background: "#ffffff" }}>
+            <h4 className="text-center fw-bold mb-4">User Login</h4>
+            <form onSubmit={submitData}>
+              <div className="mb-3">
+                <label className="form-label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  value={user.email}
+                  onChange={getInput}
+                  placeholder="Enter email"
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="form-control"
+                  value={user.password}
+                  onChange={getInput}
+                  placeholder="Enter password"
+                  required
+                />
+              </div>
+              <div className="text-center mt-4">
+                <button type="submit" className="btn btn-primary px-5 rounded-pill">
+                  Sign In
+                </button>
+              </div>
+              <p className="text-center mt-3">
+                Don't have an account?{" "}
+                <Link to="/signup" className="text-decoration-none fw-semibold">
+                  Register here
+                </Link>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

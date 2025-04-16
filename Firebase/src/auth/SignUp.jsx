@@ -4,82 +4,112 @@ import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 function SignUp() {
-  let [user, setUser] = useState({});
-  let getInput = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+    cpass: "",
+  });
+
+  const getInput = (e) => {
+    const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
 
-  let submitData = (e) => {
+  const submitData = (e) => {
     e.preventDefault();
-    console.log(user);
-    if (user.password == user.cpass) {
+    if (user.password === user.cpass) {
       createUserWithEmailAndPassword(auth, user.email, user.password)
         .then((res) => {
-          console.log(res.user);
-          updateProfile(auth.currentUser, { displayName: user.username })
-            .then((userRes) => {
-              console.log(auth.currentUser);
+          updateProfile(auth.currentUser, {
+            displayName: user.username,
+          })
+            .then(() => {
+              console.log("User profile updated:", auth.currentUser);
             })
             .catch((err) => {
-              console.log(err.message);
+              console.log("Profile update error:", err.message);
             });
           console.log("User Registered Successfully!");
         })
         .catch((err) => {
-          console.log(err.message);
+          console.log("Registration error:", err.message);
         });
     } else {
-      console.log("Passowrds Dont't Match!");
+      console.log("Passwords don't match!");
     }
   };
 
   return (
-    <div>
-      <h1>Sign Up Page</h1>
-      <form method="post" onSubmit={(e) => submitData(e)}>
-        <table border={1} align="center">
-          <tr>
-            <td>Enter Username</td>
-            <td>
-              <input
-                type="text"
-                name="username"
-                onChange={(e) => getInput(e)}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>Enter Email</td>
-            <td>
-              <input type="email" name="email" onChange={(e) => getInput(e)} />
-            </td>
-          </tr>
-          <tr>
-            <td>Enter Password</td>
-            <td>
-              <input
-                type="text"
-                name="password"
-                onChange={(e) => getInput(e)}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>Enter Confirm Password</td>
-            <td>
-              <input type="text" name="cpass" onChange={(e) => getInput(e)} />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2} align="center">
-              <input type="submit" name="submit" value="Sign Up" />
-            </td>
-          </tr>
-        </table>
-      </form>
-      <Link to="/">Sign In</Link>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card p-4 shadow rounded-4 border-0" style={{ background: "#ffffff" }}>
+            <h4 className="text-center fw-bold mb-4">User Registration</h4>
+            <form onSubmit={submitData}>
+              <div className="mb-3">
+                <label className="form-label">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  className="form-control"
+                  value={user.username}
+                  onChange={getInput}
+                  placeholder="Enter username"
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  value={user.email}
+                  onChange={getInput}
+                  placeholder="Enter email"
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="form-control"
+                  value={user.password}
+                  onChange={getInput}
+                  placeholder="Enter password"
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Confirm Password</label>
+                <input
+                  type="password"
+                  name="cpass"
+                  className="form-control"
+                  value={user.cpass}
+                  onChange={getInput}
+                  placeholder="Re-enter password"
+                  required
+                />
+              </div>
+              <div className="text-center mt-4">
+                <button type="submit" className="btn btn-primary px-5 rounded-pill">
+                  Register
+                </button>
+              </div>
+              <p className="text-center mt-3">
+                Already have an account?{" "}
+                <Link to="/" className="text-decoration-none fw-semibold">
+                  Login here
+                </Link>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
