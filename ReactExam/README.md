@@ -1,3 +1,4 @@
+![Screenshot 2025-04-21 152856](https://github.com/user-attachments/assets/34a22529-cedb-4281-8b3f-dcab46cf5a5d)
 <body style="font-family: Arial, sans-serif; background: #F4F7FE; padding: 20px;">
 
   <h1 style="text-align: center; color: #4A55A2;">Todo Task Manager</h1>
