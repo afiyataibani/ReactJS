@@ -1,0 +1,52 @@
+{
+  "tasks": [
+    {
+      "id": "0836",
+      "username": "afiya",
+      "task": "watch movie",
+      "date": "2025-04-20",
+      "status": 0,
+      "task_type": "personal"
+    },
+    {
+      "id": "8264",
+      "username": "afiya",
+      "task": "complete project",
+      "date": "2025-04-25",
+      "status": 0,
+      "task_type": "office"
+    },
+    {
+      "id": "adfc",
+      "username": "afiya",
+      "task": "go out for dinner",
+      "date": "2025-04-26",
+      "status": 0,
+      "task_type": "family"
+    },
+    {
+      "id": "04a8",
+      "username": "afiya",
+      "task": "walking",
+      "date": "2025-04-21",
+      "status": 1,
+      "task_type": "friends"
+    },
+    {
+      "id": "25cf",
+      "username": "afiya",
+      "task": "hair wash",
+      "date": "2025-04-22",
+      "status": 0,
+      "task_type": "other"
+    },
+    {
+      "id": "89da",
+      "username": "afiya",
+      "task": "e-commerce project",
+      "date": "2025-04-26",
+      "status": 0,
+      "task_type": "personal"
+    }
+  ]
+}
