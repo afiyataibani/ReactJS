@@ -5,12 +5,17 @@ import "font-awesome/css/font-awesome.min.css";
 
 const Todo = () => {
   const [taskList, setTaskList] = useState([]);
+  const [filteredTasks, setFilteredTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
   const [userName, setUserName] = useState("");
   const [taskDate, setTaskDate] = useState("");
   const [isCompleted, setIsCompleted] = useState(false);
   const [taskCategory, setTaskCategory] = useState("office");
   const [errorMessage, setErrorMessage] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOption, setSortOption] = useState("date");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 2;
 
   const loadTasks = async () => {
     try {
@@ -24,6 +29,28 @@ const Todo = () => {
   useEffect(() => {
     loadTasks();
   }, []);
+
+  useEffect(() => {
+    let tasks = [...taskList];
+
+    // Search filter
+    if (searchTerm.trim()) {
+      tasks = tasks.filter((task) =>
+        task.task.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Sorting
+    tasks.sort((a, b) => {
+      if (sortOption === "username")
+        return a.username.localeCompare(b.username);
+      if (sortOption === "task") return a.task.localeCompare(b.task);
+      return new Date(b.date) - new Date(a.date);
+    });
+
+    setFilteredTasks(tasks);
+    setCurrentPage(1); // Reset page on filter change
+  }, [taskList, searchTerm, sortOption]);
 
   const handleTaskSubmit = async (e) => {
     e.preventDefault();
@@ -99,6 +126,11 @@ const Todo = () => {
     }
   };
 
+  const indexOfLast = currentPage * itemsPerPage;
+  const indexOfFirst = indexOfLast - itemsPerPage;
+  const currentTasks = filteredTasks.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil(filteredTasks.length / itemsPerPage);
+
   return (
     <div
       className="container-fluid py-5"
@@ -108,6 +140,7 @@ const Todo = () => {
         fontFamily: "'Segoe UI', sans-serif",
       }}
     >
+      {/* Form Card */}
       <div className="d-flex justify-content-center">
         <div
           className="card p-4 shadow-lg mb-5"
@@ -187,13 +220,9 @@ const Todo = () => {
               style={{
                 background: "linear-gradient(to right, #4A55A2, #7895CB)",
                 borderRadius: "1rem",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
               }}
             >
-              <i className="fa fa-plus me-2" style={{ fontSize: "1.2rem" }}></i>{" "}
-              Add Task
+              <i className="fa fa-plus me-2"></i> Add Task
             </button>
           </form>
 
@@ -205,11 +234,39 @@ const Todo = () => {
         </div>
       </div>
 
-      {/* Task List */}
+      {/* Search & Sort Controls */}
+      <div className="row justify-content-center mb-4 px-3">
+        <div className="col-12" style={{ maxWidth: "650px" }}>
+          <div className="row g-2">
+            <div className="col-md-8">
+              <input
+                type="text"
+                className="form-control rounded-3"
+                placeholder="🔍 Search task"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            <div className="col-md-4">
+              <select
+                className="form-select rounded-3"
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+              >
+                <option value="date">📅 Sort by Date</option>
+                <option value="username">👤 Sort by Username</option>
+                <option value="task">📝 Sort by Task</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Task Cards */}
       <div className="row justify-content-center px-3">
         <div className="col-12" style={{ maxWidth: "650px" }}>
           <div className="row g-3">
-            {taskList.map((taskItem) => (
+            {currentTasks.map((taskItem) => (
               <div key={taskItem.id} className="col-6">
                 <div
                   className={`card shadow-sm ${getCategoryClass(
@@ -278,6 +335,30 @@ const Todo = () => {
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          <div className="d-flex justify-content-center mt-4">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`btn mx-1 px-3 py-1 fw-semibold text-white ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+                style={{
+                  background:
+                    currentPage === index + 1
+                      ? "linear-gradient(to right, #4A55A2, #7895CB)"
+                      : "#ced4da",
+                  border: "none",
+                  borderRadius: "1rem",
+                  color: currentPage === index + 1 ? "#fff" : "#333",
+                }}
+              >
+                {index + 1}
+              </button>
             ))}
           </div>
         </div>

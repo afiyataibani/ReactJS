@@ -1,62 +1,91 @@
-<body style="font-family: Arial, sans-serif; background: #F4F7FE; padding: 20px;">
+<body>
 
-  <h1 style="text-align: center; color: #4A55A2;">Todo Task Manager</h1>
-  <p style="text-align: center; font-size: 1.2rem; color: #6A6A6A;">
-    A simple React-based task manager app that allows you to manage your tasks efficiently. 
-    The app lets you add tasks, categorize them, mark them as completed, and delete tasks.
-  </p>
+  <h1>📋 Todo Task Manager</h1>
+  <p>A simple and elegant task management app built using <strong>React</strong>, <strong>Bootstrap</strong>, and <strong>JSON Server</strong> for mock backend functionality.</p>
 
-  <h2>Features</h2>
+  <h2>🚀 Features</h2>
   <ul>
-    <li>Add tasks with descriptions, dates, categories, and completion status.</li>
-    <li>Choose categories for tasks such as Office, Personal, Family, Friends, or Others.</li>
-    <li>Mark tasks as completed or pending with a simple toggle.</li>
-    <li>Delete tasks as needed.</li>
-    <li>Responsive design that works on both desktop and mobile devices.</li>
+    <li>Add new tasks with description, username, date, and category</li>
+    <li>Mark tasks as completed</li>
+    <li>Delete tasks</li>
+    <li>Filter tasks by search</li>
+    <li>Sort tasks by username, task name, or date</li>
+    <li>Pagination (2 tasks per page)</li>
+    <li>Gradient-based modern UI with category color indicators</li>
   </ul>
 
-  <h2>Technologies Used</h2>
+  <h2>📦 Technologies Used</h2>
   <ul>
-    <li><strong>React</strong> - Frontend framework for building the user interface.</li>
-    <li><strong>Axios</strong> - To make HTTP requests to the backend for task operations.</li>
-    <li><strong>Bootstrap</strong> - For styling the application with responsive components.</li>
-    <li><strong>Font Awesome</strong> - For adding icons (e.g., plus, checkmark, delete).</li>
+    <li>React</li>
+    <li>Axios</li>
+    <li>Bootstrap 5</li>
+    <li>Font Awesome</li>
+    <li>JSON Server</li>
   </ul>
 
-  <h2>Setup Instructions</h2>
-  <ol>
-    <li>Clone the repository to your local machine:</li>
-    <pre><code>git clone https://github.com/yourusername/todo-task-manager.git</code></pre>
+  <h2>🛠️ Installation & Setup</h2>
+  <pre><code>
+# 1. Clone the repository
+git clone https://github.com/yourusername/todo-task-manager.git
+cd todo-task-manager
 
-    <li>Navigate to the project directory:</li>
-    <pre><code>cd todo-task-manager</code></pre>
+# 2. Install dependencies
+npm install
 
-    <li>Install the dependencies using npm or yarn:</li>
-    <pre><code>npm install</code></pre>
-    <pre><code>yarn install</code></pre>
+# 3. Start the mock backend server (JSON Server)
+npx json-server --watch db.json --port 3000
 
-    <li>Start the development server:</li>
-    <pre><code>npm start</code></pre>
-    <pre><code>yarn start</code></pre>
+# 4. Start the React development server
+npm start
+  </code></pre>
 
-    <li>Open your browser and visit <a href="http://localhost:3000">http://localhost:3000</a> to use the app.</li>
-  </ol>
-
-  <h2>App Functionality</h2>
-  <p>Upon loading, the app fetches the task list from the backend and displays it in a card layout. Each task is categorized and has a checkbox to toggle between completed and pending status. You can add new tasks, specify their category, and set a due date. Completed tasks are marked with a checkmark, and pending tasks are shown with a clock icon.</p>
-
-  <h2>API Endpoints</h2>
+  <h2>📁 File Structure</h2>
   <ul>
-    <li><strong>GET /tasks</strong> - Fetches all tasks.</li>
-    <li><strong>POST /tasks</strong> - Adds a new task.</li>
-    <li><strong>PATCH /tasks/:id</strong> - Updates the completion status of a task.</li>
-    <li><strong>DELETE /tasks/:id</strong> - Deletes a task by ID.</li>
+    <li><code>Todo.jsx</code> - Main component with UI and functionality</li>
+    <li><code>db.json</code> - JSON Server database file</li>
+    <li><code>index.js</code> - Entry point for React</li>
   </ul>
 
-  <h2>Contributing</h2>
-  <p>If you'd like to contribute to the project, please fork the repository, make your changes, and submit a pull request. We welcome all contributions!</p>
+  <h2>🗃️ JSON Server Sample (db.json)</h2>
+  <pre><code>
+{
+  "tasks": [
+    {
+      "id": 1,
+      "username": "John",
+      "task": "Buy groceries",
+      "date": "2025-04-21",
+      "status": 0,
+      "task_type": "personal"
+    }
+  ]
+}
+  </code></pre>
 
-  <h2>License</h2>
-  <p>This project is licensed under the MIT License - see the <a href="#">LICENSE</a> file for details.</p>
+  <h2>✨ Styling & UI</h2>
+  <ul>
+    <li>Modern card-based layout</li>
+    <li>Gradient backgrounds</li>
+    <li>Responsive and clean design</li>
+    <li>Icons from Font Awesome</li>
+  </ul>
+
+  <h2>📬 API Endpoints</h2>
+  <ul>
+    <li><code>GET /tasks</code> - Get all tasks</li>
+    <li><code>POST /tasks</code> - Add a new task</li>
+    <li><code>PATCH /tasks/:id</code> - Update task status</li>
+    <li><code>DELETE /tasks/:id</code> - Delete a task</li>
+  </ul>
+
+  <h2>📌 Notes</h2>
+  <ul>
+    <li>Ensure JSON Server is running on <code>http://localhost:3000</code></li>
+    <li>All tasks require a username, task description (min 3 chars), and a valid date</li>
+    <li>Uses local state management and controlled inputs</li>
+  </ul>
+
+  <h2>📃 License</h2>
+  <p>This project is open-source and available under the MIT License.</p>
 
 </body>
